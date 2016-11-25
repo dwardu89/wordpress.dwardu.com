@@ -29,7 +29,11 @@ define('DB_USER', 'username_here');
 define('DB_PASSWORD', 'password_here');
 
 /** MySQL hostname */
-define('DB_HOST', 'localhost');
+if (0 === strpos($_SERVER['HTTP_HOST'], 'test.')) { // check if the http host in the request header start with test.
+    define('DB_HOST', 'TEST-RDS-HOST');
+} else {
+    define('DB_HOST', 'PROD-RDS-HOST');
+}
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
